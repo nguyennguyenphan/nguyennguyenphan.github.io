@@ -1,0 +1,195 @@
+error_reporting(0);
+session_start();
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+$xnhac = "\033[1;36m";
+$den = "\033[1;30m";
+$do = "\033[1;31m";
+$luc = "\033[1;32m";
+$vang = "\033[1;33m";
+$xduong = "\033[1;34m";
+$hong = "\033[1;35m";
+$trang = "\033[1;37m";
+$_SESSION['useragent'] = 'Mozilla/5.0 (Linux; Android 10; CPH1819) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.101 Mobile Safari/537.36';
+$thanh_xau= $trang."≈ ".$do."[".$luc."●".$do."] ".$trang."➩ ";
+$thanh_dep= $trang."≈ ".$do."[".$luc."✓".$do."] ".$trang."➩ ";
+$banner="\r     
+\033[1;91m  (c).-.(c)             ░██████╗░░█████╗░██╗░░░░░░█████╗░
+\033[1;95m   / ._. \              ██╔════╝░██╔══██╗██║░░░░░██╔══██╗
+\033[1;33m __\( Y )/__            ██║░░██╗░███████║██║░░░░░██║░░██║
+\033[1;91m(_.-/'-'\-._)           ██║░░╚██╗██╔══██║██║░░░░░██║░░██║
+\033[1;92m   ||   ||              ╚██████╔╝██║░░██║███████╗╚█████╔╝
+\033[1;97m _.' `-' '._            ░╚═════╝░╚═╝░░╚═╝╚══════╝░╚════╝░
+\033[1;95m(.-./`-'\.-.)      █░█ ▄▀█ █▀█   ▀█▀ █░█ ▄▀█ █    ▀█▀ █▀█ █▀█ █░░
+\033[1;93m `-'     `-'       █▀█ █▀█ █▄█   ░█░ █▀█ █▀█ █    ░█░ █▄█ █▄█ █▄▄    
+\n"; 
+gioithieu($banner, $thanh_xau);
+$khock=[];
+echo $thanh_dep.$luc."Bạn Muốn Nhập Bao Nhiêu Cookie: $vang";
+	$slg = trim(fgets(STDIN));
+while ($a < $slg){$a++;
+echo $thanh_dep.$luc."Nhập Cookie Thứ $a: $vang";
+$nhapck = (string)trim(fgets(STDIN));
+if($nhapck == ''){break;}
+array_push($khock,$nhapck); }
+$soacc=count($khock);
+chay(35);
+$khoCMT=[];
+echo $thanh_dep.$luc."Bạn Muốn Nhập Bao Nhiêu Nội Dung: $vang";
+	$snd = trim(fgets(STDIN));
+while ($b < $snd){$b++;
+echo $thanh_dep.$luc."Nhập Nội Dung Thứ $b: $vang";
+$nhapck = (string)trim(fgets(STDIN));
+if($nhapck == ''){break;}
+array_push($khoCMT,$nhapck); }
+$soacc=count($khoCMT);
+chay(35);
+echo $thanh_dep.$luc."Nhập Delay: $vang";
+	$delay=trim(fgets(STDIN));
+echo $thanh_dep.$luc."Sau Bao Nhiêu Nhiệm Vụ Thì Chuyển Acc: $vang";
+   $yyy=trim(fgets(STDIN));
+echo $thanh_dep.$luc."Nhập Số Lần Spam: $vang";
+	$stop=trim(fgets(STDIN));
+chay(35);
+$kho_ID = [];
+while (true){
+	for($xz=0;$xz<count($khock);$xz++){
+$cookie = $khock[$xz];
+$access_token = laytoken($cookie);
+if ( $access_token == "2") { echo $do." Cookie Die.                   \n"; }
+$tenfb = json_decode(file_get_contents('https://graph.facebook.com/me/?access_token='.$access_token))-> {'name'};
+$idfb = json_decode(file_get_contents('https://graph.facebook.com/me/?access_token='.$access_token))-> {'id'};
+echo $vang."Đang Tool ID: ".$luc.$idfb." ".$vang."Tên FB: ".$luc.$tenfb."".$res."\n";
+$spam=0;
+while (true){
+if ($spam == 1) {break; }
+ foreach ( $khoCMT as $msg ){
+   $list = gethome($cookie);
+   $link2 = explode('">Bày tỏ cảm xúc',explode('/reactions/picker/?',$list)[1])[0];
+   $url = 'https://mbasic.facebook.com/reactions/picker/?'.str_replace('&amp;','&',$link2);
+   $id = explode('&origin_uri',explode('?ft_id=',$url)[1])[0];
+if ($id !== '' ){
+	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/'.$id.'/comments');
+    $head[] = "Connection: keep-alive";
+    $head[] = "Keep-Alive: 300";
+    $head[] = "authority: m.facebook.com";
+    $head[] = "ccept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+    $head[] = "accept-language: vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5";
+    $head[] = "cache-control: max-age=0";
+    $head[] = "upgrade-insecure-requests: 1";
+    $head[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
+    $head[] = "sec-fetch-site: none";
+    $head[] = "sec-fetch-mode: navigate";
+    $head[] = "sec-fetch-user: ?1";
+    $head[] = "sec-fetch-dest: document";
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Linux; Android 10; CPH1819) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.101 Mobile Safari/537.36');
+    curl_setopt($ch, CURLOPT_ENCODING, '');
+    curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $head);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
+    $data = array('message' => $msg, 'access_token' => $access_token);
+    curl_setopt($ch, CURLOPT_POST, count($data));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    $access = curl_exec($ch);
+    curl_close($ch);
+    $get = json_decode($access);
+	$g = $get->error;
+   if ($get -> {'code'} == 190) {
+                    echo "Cookie Die !!?!                  \n";
+                    array_splice($khock,$xz,1);
+                    $spam = 1; break; }
+    if ($get -> {'code'} == 368) {
+                    echo "\033[1;91m".$get -> {'message'};
+                    echo "\n";
+                    $spam = 1; break;}
+$maul=rand(31,37);
+$maui="\033[1;".$maul."m";
+$dem++;
+echo $xnhac."[$dem]⚡\033[1;31m[\033[1;35m".date('H:i:s')."\033[1;31m]".$xnhac."⚡Đã ".$maui."COMMENT".$xnhac." Thành Công bài viết 👉 ".$vang.$id." \n";
+echo $vang."[".$do."TEXT".$vang."] : ".$trang.$msg."\n";
+if ($dem >= $stop ){ echo $luc." Đã Spam Thành Công $i  Bài Viết  \n"; exit; }
+    delay($delay);
+ if($dem % $yyy == 0){$spam = 1; break; }
+} else { echo $do." Đang Lướt Tìm Bài Viết.                      \r"; }
+}
+}
+} 
+}
+function laytoken($cookie){
+$head= array("Connection: keep-alive","Keep-Alive: 300","authority: m.facebook.com","ccept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7","accept-language: vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5","cache-control: max-age=0","upgrade-insecure-requests: 1","accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-fetch-site: none","sec-fetch-mode: navigate","sec-fetch-user: ?1","sec-fetch-dest: document");
+$ch=curl_init();
+	curl_setopt_array($ch , array(
+		CURLOPT_URL => "https://business.facebook.com/business_locations",
+		CURLOPT_USERAGENT => $_SESSION['useragent'],
+		CURLOPT_COOKIE => $cookie,
+		CURLOPT_HTTPHEADER => $head,
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_SSL_VERIFYPEER => FALSE,
+		CURLOPT_TIMEOUT => 60,
+		CURLOPT_CONNECTTIMEOUT => 60,
+		CURLOPT_FOLLOWLOCATION => TRUE
+	));
+	$access = curl_exec($ch);
+	curl_close($ch);
+$access_token = 'EAAG'.explode('","', explode('EAAG', $access)[1])[0];
+if(strlen($access_token) > 5){
+	return $access_token;
+} else {
+	return '2';
+}
+}
+function gethome($cookie){
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,'https://mbasic.facebook.com/home.php');
+$head[] = "Connection: keep-alive";
+	$head[] = "Keep-Alive: 300";
+	$head[] = "authority: m.facebook.com";
+	$head[] = "ccept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+	$head[] = "accept-language: vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5";
+	$head[] = "cache-control: max-age=0";
+	$head[] = "upgrade-insecure-requests: 1";
+	$head[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
+	$head[] = "sec-fetch-site: none";
+	$head[] = "sec-fetch-mode: navigate";
+	$head[] = "sec-fetch-user: ?1";
+	$head[] = "sec-fetch-dest: document";
+curl_setopt($ch, CURLOPT_TIMEOUT,60);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,60);
+curl_setopt($ch, CURLOPT_USERAGENT, $_SESSION['useragent']);
+curl_setopt($ch, CURLOPT_COOKIE,$cookie);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,TRUE);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,TRUE);
+curl_setopt($ch, CURLOPT_HTTPHEADER,$head);
+curl_setopt($ch, CURLOPT_ENCODING,'');
+return  curl_exec($ch);
+curl_close($ch);
+}
+function delay ($delay){
+	for($tt = $delay ;$tt>= 1;$tt--){
+      echo "\r\033[1;33m   GoLa-hào \033[1;31m ~>       \033[1;32m LO      \033[1;31m | $tt | "; usleep(150000);
+        echo "\r\033[1;31m   GoLa-hào \033[0;33m   ~>     \033[0;37m LOA     \033[0;31m | $tt | "; usleep(150000);
+        echo "\r\033[1;32m   GoLa-hào \033[0;33m     ~>   \033[0;37m LOAD    \033[0;31m | $tt | "; usleep(150000);
+        echo "\r\033[1;34m   GoLa-hào \033[0;33m      ~>  \033[0;37m LOADI   \033[0;31m | $tt | "; usleep(150000);
+        echo "\r\033[1;35m   GoLa-hào \033[0;33m       ~> \033[0;37m LOADIN  \033[0;31m | $tt | "; usleep(150000);
+        echo "\r\033[1;35m   GoLa-hào \033[0;33m       ~> \033[0;37m LOADING \033[0;31m | $tt | "; usleep(150000);
+        echo "\r\033[1;35m   GoLa-hào \033[0;33m        ~>\033[0;37m LOADING.\033[0;31m | $tt | "; usleep(150000);} 
+echo "\r\e[1;95m    ⚡Gola⚡                       \r";  }
+function delaybl($delaybl) {
+for ($time = $delaybl; $time > -0; $time--) {echo "\r"; 
+	echo "\r\033[1;97m Đang hoạt động chống block sẽ chạy lại sau $time giây"; sleep(1); echo "\r                                                       \r"; 
+}}
+function chay($t) { for ($x = 0; $x <= $t; $x++) { echo "\033[1;37m= ";usleep($_SESSION['load']); } echo"\n";}
+function gioithieu($banner, $thanh_xau){ @system('clear');
+for($i = 0; $i < strlen($banner); $i++){echo $banner[$i];usleep($_SESSION['load']);}
+echo "\033[1;33m@PowerByTháiHào\n";
+echo $thanh_xau."\033[1;35mTOOL COMMENT DẠO \n"; usleep($_SESSION['load']);
+echo $thanh_xau."\033[1;33mBản Quyền:\033[1;34m Thái Hào\n"; usleep($_SESSION['load']);
+echo $thanh_xau."\033[1;35mAdmin:\033[1;36m Thái Hào\n"; usleep($_SESSION['load']);
+echo $thanh_xau."\033[1;31mDonate MoMo: \033[1;34m0353550647\n"; usleep($_SESSION['load']);
+chay(35);}
